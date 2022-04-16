@@ -66,9 +66,7 @@ where
         for i in (0..current.len()).rev() {
             current[i] += T::one();
 
-            // this is supposed to be "factors" @ i
             if current[i] > self.factors[i] {
-            //if current[i] > FromPrimitive::from_usize(3).unwrap() {
                 current[i] = T::zero();
             } else {
                 break;

@@ -1,6 +1,7 @@
 use std::ops::AddAssign;
 use std::marker::PhantomData;
 use std::ptr::NonNull;
+use std::iter::zip;
 use num::{Integer, ToPrimitive, FromPrimitive};
 
 pub struct Factors<T: Integer + ToPrimitive + Clone> {

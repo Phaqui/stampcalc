@@ -11,7 +11,9 @@ mod tests {
 
     #[test]
     fn test_empty() {
-        assert_eq!(0, vec_mulsum(&vec![], &vec![]));
+        let a: Vec<usize> = Vec::new();
+        let b: Vec<usize> = Vec::new();
+        assert_eq!(0, vec_mulsum(&a, &b));
     }
 
     #[test]

@@ -1,5 +1,6 @@
 mod factors;
 mod vec_mulsum;
+pub mod new_algo;
 
 use std::ops::{AddAssign, Div};
 use std::iter::Sum;

@@ -2,6 +2,7 @@ fn dot(a: &[usize], b: &[usize]) -> usize {
     a.iter().zip(b.iter()).map(|(x, y)| x * y).sum()
 }
 
+#[inline(always)]
 fn increment_current(current: &mut Vec<usize>, max_factors: &Vec<usize>) -> (bool, bool) {
     let mut did_increment = false;
     let mut did_carry = false;
@@ -24,9 +25,7 @@ fn increment_current(current: &mut Vec<usize>, max_factors: &Vec<usize>) -> (boo
     return (did_increment, did_carry);
 }
 
-fn main() {
-    let price = 100;
-    let input = &[5, 6, 7, 8, 9];
+pub fn solutions(price: usize, input: &Vec<usize>) {
     let len = input.len();
     
     let mut stamps = input.clone();
@@ -40,7 +39,7 @@ fn main() {
     //let mut answers: Vec<Vec<usize>> = Vec::new();
     
     let old_n_checks: usize = stamps.iter().map(|x| (price / x) + 1).product();
-    println!("OLD number of checks to do: {}\n", old_n_checks);
+    //println!("OLD number of checks to do: {}\n", old_n_checks);
     
     let max_outer = price / biggest;
     
@@ -53,14 +52,14 @@ fn main() {
         //current[0] = big;
         
         let price_to_hit = price - big * biggest;
-        println!("* big == {}, which means price to hit == {}", big, price_to_hit);
+        //println!("* big == {}, which means price to hit == {}", big, price_to_hit);
         let max_factors = rest.iter().map(|rs| price_to_hit / rs).collect::<Vec<usize>>();
-        println!("  max_factors for this round: {:?}", max_factors);
+        //println!("  max_factors for this round: {:?}", max_factors);
         
         let n_to_check: usize = max_factors.iter().product();
         nchecks += n_to_check;
         
-        println!("  combinations to check: {}", n_to_check);
+        //println!("  combinations to check: {}", n_to_check);
         let mut ninner_checks: usize = 0;
         
         loop {
@@ -78,5 +77,5 @@ fn main() {
         //println!("Did {} inner checks", ninner_checks);
     }
     
-    println!("Found {} solutions (doing {} checks)", nsolutions, nchecks);
+    //println!("Found {} solutions (doing {} checks)", nsolutions, nchecks);
 }

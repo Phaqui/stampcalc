@@ -3,10 +3,7 @@ def find_all_solutions(price, stamps):
     stamps.sort()
     stamps.reverse()
 
-    current_factors = [0] * len(stamps)
-
     nchecks = 0
-
     def _solutions(price, idx, current_factors, stamps):
         nonlocal nchecks
         if len(stamps) == 1:
@@ -21,7 +18,7 @@ def find_all_solutions(price, stamps):
                 current_factors_local = current_factors.copy()
                 current_factors_local[idx] = i
                 yield from _solutions(
-                        price - stamps[0] * i, idx + 1, current_factors_local, rest)
+                        price - biggest * i, idx + 1, current_factors_local, rest)
 
     yield from _solutions(price, 0, [0] * len(stamps), stamps)
     return nchecks
@@ -36,7 +33,6 @@ if __name__ == "__main__":
     parser.add_argument("-r", "--no-results", help="don't show results", action="store_true")
     args = parser.parse_args()
 
-    stamps = [int(stamp) for stamp in args.stamps]
     stamps = list(set(args.stamps))
     stamps.sort()
     stamps.reverse()
